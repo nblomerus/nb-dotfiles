@@ -1,0 +1,30 @@
+#! /bin/sh
+xrandr --output Virtual1 --mode 1920x1080
+pgrep -x sxhkd > /dev/null || sxhkd &
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+# Workspaces
+bspc monitor -d 1 2 3 4 5
+# Color Scheme
+bspc config normal_border_color "#282c34"
+bspc config focused_border_color "#51afef"
+bspc config borderless_monocle true
+bspc config borderless_floating true
+
+# Global Settings
+bspc config pointer_modifier mod4
+bspc config pointer_action1 move
+bspc config pointer_action2 resize_side
+bspc config pointer_action3 resize_corner
+bspc config focus_follows_pointer true
+# Gaps
+bspc config gapless_monocle false
+
+# Autostart
+~/.config/polybar/launch.sh &
+picom &
+feh --bg-fill ~/Pictures/wallpapers/nature1.jpg
+xsetroot -cursor_name left_ptr &
+
